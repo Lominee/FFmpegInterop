@@ -2,6 +2,11 @@ name: Scrape M3U8 URLs
 
 on:
   workflow_dispatch:
+    inputs:
+      target_url:
+        description: 'The URL to scrape'
+        required: true
+        default: 'https://example.com'
 
 jobs:
   scrape:
@@ -19,5 +24,5 @@ jobs:
         pip install -r requirements.txt
     - name: Run script
       run: |
-        python scrape_m3u8.py
-
+        python scrape_m3u8.py ${{ github.event.inputs.target_url }}
+ 
